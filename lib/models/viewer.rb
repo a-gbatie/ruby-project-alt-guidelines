@@ -1,4 +1,4 @@
 class Viewer < ActiveRecord::Base
-    belongs_to :movie
-    belongs_to :review
+    has_many :reviews
+    has_many :movies, through: :reviews
 end
