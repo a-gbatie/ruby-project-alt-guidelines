@@ -1,13 +1,14 @@
 class Movie < ActiveRecord::Base
-    belongs_to :viewer
-    belongs_to :review
+    has_many :reviews
+    has_many :viewers, through: :reviews
+    
     
     def self.top_rated(genre)
-    movies = Movie.all.select do |m| 
-    m.genre == genre
-    end
+        top_reviews = Review.all.select {|r| r.rating >= 3}
+        top_movies = top_reviews.map {|r| r.movie}
+        top_movies.select {|m| m.genre == genre}
     binding.pry
-        # self.where("rating >= ?", 3)
     end 
 
 end
+
