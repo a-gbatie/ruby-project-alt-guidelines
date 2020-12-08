@@ -2,11 +2,11 @@ class Review < ActiveRecord::Base
     belongs_to :movie
     belongs_to :viewer
 
-
     def self.get_review(title)
-        all_reviews = Review.all
-        get_movie = all_reviews.map {|r| r.title}
-        # get_movie.select {|m| m.title == title}
-        binding.pry
+        find_movie = Movie.find_by(title: title)
+        find_movie.reviews.each do |r|
+            p "Other viewers rated this movie #{r.rating} out of 5!"
+            p "They particularly liked #{r.fave_scene}"
+        end
     end
 end
