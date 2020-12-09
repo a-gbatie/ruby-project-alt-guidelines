@@ -5,8 +5,8 @@ class Review < ActiveRecord::Base
     def self.get_review(title)
         find_movie = Movie.find_by(title: title)
         find_movie.reviews.each do |r|
-            p "Other viewers rated this movie #{r.rating} out of 5!"
-            p "They particularly liked #{r.fave_scene}"
+            puts "Other viewers rated this movie #{r.rating} out of 5!"
+            puts "They particularly liked #{r.fave_scene}"
         end
     end
 end
